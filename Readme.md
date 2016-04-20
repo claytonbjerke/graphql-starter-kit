@@ -18,3 +18,4 @@
 
 ## References Used:
 1. https://github.com/graphql/swapi-graphql
+2. https://github.com/airbnb/javascript (linting, style guide)
