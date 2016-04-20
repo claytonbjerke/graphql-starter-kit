@@ -1,14 +1,17 @@
-var graphqlHTTP = require('express-graphql');
-var express = require('express');
+import express from 'express';
+import graphqlHTTP from 'express-graphql';
 
-var schema = require('./schemas/index')
+import schema from './schemas/index';
 
-express()
-    .use('/graphql', graphqlHTTP({
+const app = express();
+const port = 5000;
+
+app.all('/graphql', (req, res) => res.redirect('/'));
+
+app.use('/', graphqlHTTP(() => ({
         schema: schema,
-        pretty: true,
         graphiql: true
-    }))
-    .listen(3000);
+    })))
+    .listen(port);
 
-console.log('GraphQL server running on http://localhost:3000/graphql');
+console.log('Listening on port: ', port);

@@ -1,30 +1,38 @@
-var graphql = require('graphql');
-var data = require('../data.json');
+import {
+    GraphQLID,
+    GraphQLInt,
+    GraphQLString,
+    GraphQLList,
+    GraphQLObjectType,
+    GraphQLSchema,
+} from 'graphql';
 
-var userType = new graphql.GraphQLObjectType({
+import data from '../data.json';
+
+var userType = new GraphQLObjectType({
     name: 'User',
     fields: {
         id: {
-            type: graphql.GraphQLString
+            type: GraphQLString
         },
         name: {
-            type: graphql.GraphQLString
+            type: GraphQLString
         }
     }
 });
 
-var schema = new graphql.GraphQLSchema({
-    query: new graphql.GraphQLObjectType({
+var schema = new GraphQLSchema({
+    query: new GraphQLObjectType({
         name: 'Query',
         fields: {
             user: {
                 type: userType,
                 args: {
                     id: {
-                        type: graphql.GraphQLString
+                        type: GraphQLString
                     }
                 },
-                resolve: function (_, args) {
+                resolve: function(_, args) {
                     return data[args.id];
                 }
             }
@@ -32,4 +40,4 @@ var schema = new graphql.GraphQLSchema({
     })
 });
 
-module.exports = schema;
+export default schema;
