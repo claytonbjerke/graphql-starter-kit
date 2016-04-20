@@ -4,7 +4,7 @@
 
 1. npm i
 2. npm start
-3. go to http://localhost:3000/graphql
+3. go to http://localhost:5000/graphql
 
 ## TODO:
 1. deploy to heroku
@@ -12,8 +12,7 @@
 3. tests
    - mocha, chai
 4. add some example queries
-5. github web api
-6. babel
+5. github web api for query data
 
 
 ## References Used:
