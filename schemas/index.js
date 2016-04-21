@@ -1,43 +1,38 @@
 import {
-    GraphQLID,
-    GraphQLInt,
     GraphQLString,
-    GraphQLList,
     GraphQLObjectType,
     GraphQLSchema,
+    GraphQLList
 } from 'graphql';
 
 import data from '../data.json';
+import UserType from './types/user';
+let allUsers = {
+    type: new GraphQLList(UserType),
+    description: 'all das ppl',
+    resolve: () => [data[1],data[2],data[3]]
+};
 
-var userType = new GraphQLObjectType({
-    name: 'User',
-    fields: {
+let userById = {
+    type: UserType,
+    args: {
         id: {
             type: GraphQLString
-        },
-        name: {
-            type: GraphQLString
         }
+    },
+    resolve(_, args) {
+        return data[args.id];
     }
-});
+};
 
-var schema = new GraphQLSchema({
-    query: new GraphQLObjectType({
-        name: 'Query',
-        fields: {
-            user: {
-                type: userType,
-                args: {
-                    id: {
-                        type: GraphQLString
-                    }
-                },
-                resolve: function(_, args) {
-                    return data[args.id];
-                }
-            }
-        }
+let query = new GraphQLObjectType({
+    name: 'Root',
+    fields: () => ({
+        allUsers: allUsers,
+        user: userById
     })
 });
 
-export default schema;
+export default new GraphQLSchema({
+    query: query
+});
