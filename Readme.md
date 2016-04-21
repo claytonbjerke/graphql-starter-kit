@@ -18,3 +18,5 @@
 ## References Used:
 1. https://github.com/graphql/swapi-graphql
 2. https://github.com/airbnb/javascript (linting, style guide)
+3. http://facebook.github.io/graphql/ (specs)
+4. https://github.com/chentsulin/awesome-graphql
